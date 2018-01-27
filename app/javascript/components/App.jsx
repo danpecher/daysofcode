@@ -14,7 +14,15 @@ class App extends React.Component {
     return <div className={styles.container}>
       <h1>100 days of code</h1>
       <div className="todayInput">
-        <input type="text" placeholder={"Today I ... "}/> <button>Post</button>
+        <h4>Today's post:</h4>
+        <input type="text" placeholder={"Today I ... "}/><br/>
+        <select name="" id="">
+          <option value="">-- Select project --</option>
+          <option value="">Project 1</option>
+          <option value="">Project 2</option>
+          <option value="">Project 3</option>
+        </select><br/>
+        <button>Post</button>
       </div>
       {entries}
     </div>
