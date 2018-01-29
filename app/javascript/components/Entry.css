@@ -1,7 +1,63 @@
 .entry {
-    margin: 2em 0;
+    margin-top: 7px;
 }
 
 .text {
+    font-size: 18px;
     margin: .4em 0;
+    line-height: 24px;
+}
+
+.bordered {
+    border-left: 1px solid;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    padding-top: .3em;
+    margin-top: .5em;
+}
+
+.entry:last-of-type .bordered {
+    border: 0;
+}
+
+.bullet {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #000;
+    margin-right: 8px;
+    margin-left: -6.5px;
+}
+
+.dateWrap {
+    display: flex;
+    align-items: center;
+}
+
+.commits {
+    font-size: 80%;
+    color: #7d7d7d;
+    margin: 1em 0;
+}
+
+.commits a {
+    display: inline-block;
+    min-width: 4em;
+}
+
+.socialLinks {
+    margin-top: .25em;
+    font-size: 175%;
+}
+
+.socialLinks a {
+    margin-right: .25em;
+}
+
+.twitter {
+    color: #00aced;
+}
+
+.github {
+    color: #333;
 }

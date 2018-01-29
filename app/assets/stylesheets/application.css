@@ -14,6 +14,22 @@
  *= require_self
  */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Lato', sans-serif;
+}
+
+a {
+    color: #0065FF;
+    text-decoration: none;
+}
+
+button {
+    border: 1px solid #0065FF;
+    color: #0065FF;
+    background: none;
+    padding: .5em 1.5em;
 }
