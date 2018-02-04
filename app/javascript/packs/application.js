@@ -1,23 +1,27 @@
-require('react-hot-loader/patch')
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
-import App from '../components/App.jsx'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from '../components/App.js'
+import { Provider } from 'react-redux'
+import { applyMiddleware, createStore } from 'redux'
+import reducers from '../store/reducers'
+import { fetchEntries } from '../store/actions'
+import thunkMiddleware from 'redux-thunk'
+import axios from 'axios'
 
-const render = Component => {
-  ReactDOM.render(
-    <AppContainer>
-      <Component/>
-    </AppContainer>,
-    document.getElementById('app')
-  );
-}
+axios.interceptors.request.use(config => {
+  config.headers = {
+    'X-CSRF-Token': document.getElementsByName('csrf-token')[0].content
+  }
+  return config
+})
 
-render(App);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware))
 
-if (module.hot) {
-  module.hot.accept('../components/App.jsx', () => {
-    const NextRootContainer = require('../components/App.jsx').default;
-    render(NextRootContainer);
-  });
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+)
+
+store.dispatch(fetchEntries())
