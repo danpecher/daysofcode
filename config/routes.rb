@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'application#index'
-
+  root 'timeline#index'
+  get '/login', to: 'sessions#index', as: :login
+  get '/auth/:provider/callback', to: 'sessions#create'
   resources :posts
 end

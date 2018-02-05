@@ -1,0 +1,63 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    color: #515151;
+}
+
+.container {
+    width: 600px;
+    height: 70vh;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 3em;
+}
+
+.step {
+    margin: 1.5em 0;
+}
+
+.stepContent {
+    padding: 2em 0;
+}
+
+.stepInactive {
+    opacity: .5;
+}
+
+.stepCompleted {
+    color: green;
+}
+
+.authLink {
+    margin: 1em auto;
+    border-radius: 10px;
+    background: none;
+    border: 1px solid;
+    width: 225px;
+    height: 61px;
+    padding: 0 .5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.linkTwitter {
+    color: #1da1f2;
+}
+.linkTwitter:hover {
+    background: rgba(29, 161, 242, 0.1);
+}
+
+.linkGithub {
+    color: #333;
+}
+.linkGithub:hover {
+    background: rgba(51, 51, 51, 0.1);
+}

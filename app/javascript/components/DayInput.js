@@ -28,6 +28,7 @@ class DayInput extends Component {
             </a>
           </div>
           <button
+            className={'post-button'}
             onClick={() => {
               this.props.onEntryPosted(this.refs.text.value)
               this.refs.text.value = ''
