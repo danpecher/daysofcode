@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204222514) do
+ActiveRecord::Schema.define(version: 20180208061105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20180204222514) do
   create_table "users", force: :cascade do |t|
     t.string "github_uid"
     t.string "twitter_uid"
+    t.string "twitter_token"
+    t.string "twitter_token_secret"
+    t.string "github_token"
+    t.boolean "has_repo"
   end
 
 end

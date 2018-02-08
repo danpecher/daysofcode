@@ -12,3 +12,12 @@ h1 {
     width: 90%;
     margin: auto;
 }
+
+.authOverlay {
+    padding-top: 20vh;
+    text-align: center;
+}
+
+.authOverlay h2 {
+    text-align: center;
+}

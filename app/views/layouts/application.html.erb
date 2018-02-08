@@ -9,6 +9,16 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
+
+    <script>
+      window.INIT = {
+        authStatus: {
+          twitter: <%= (current_user && current_user.twitter_uid.present?) || false %>,
+          github: <%= (current_user && current_user.github_uid.present?) || false %>,
+          hasRepo: <%= (current_user && current_user.has_repo) || false %>,
+        }
+      }
+    </script>
   </head>
 
   <body>

@@ -4,7 +4,11 @@ import App from '../components/App.js'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import reducers from '../store/reducers'
-import { fetchEntries } from '../store/actions'
+import {
+  checkGithubRepo,
+  fetchEntries,
+  fetchGithubRepos
+} from '../store/actions'
 import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 
@@ -25,3 +29,10 @@ ReactDOM.render(
 )
 
 store.dispatch(fetchEntries())
+
+if (
+  !store.getState().authStatus.hasRepo &&
+  store.getState().authStatus.github
+) {
+  store.dispatch(checkGithubRepo())
+}
