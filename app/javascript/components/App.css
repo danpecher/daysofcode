@@ -21,3 +21,37 @@ h1 {
 .authOverlay h2 {
     text-align: center;
 }
+
+.authLink {
+    margin: 1em auto;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid;
+    width: 225px;
+    height: 61px;
+    padding: 0 .5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.authLink.connected {
+    opacity: .7;
+    cursor: default;
+    filter: grayscale(1);
+}
+
+.linkTwitter {
+    color: #1da1f2;
+}
+.linkTwitter:not(.connected):hover {
+    background: rgba(29, 161, 242, 0.1);
+}
+
+.linkGithub {
+    color: #333;
+}
+.linkGithub:not(.connected):hover {
+    background: rgba(51, 51, 51, 0.1);
+}

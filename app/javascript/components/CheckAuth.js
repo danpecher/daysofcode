@@ -1,52 +1,50 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import Authlink from './Authlink'
 import css from './App.css'
-import { updateGithubStatus, updateTwitterStatus } from '../store/actions'
+import { connect } from 'react-redux'
 
-const CheckAuth = ({
-  authStatus,
-  children,
-  onGithubAuthenticated,
-  onTwitterAuthenticated,
-  isRepoLoading
-}) => {
-  let content
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
+
+const CheckAuth = ({ authStatus, children, isRepoLoading }) => {
   if (authStatus.twitter && authStatus.github && authStatus.hasRepo) {
-    content = children
-  } else
-    content = (
-      <div className={css.authOverlay}>
-        <h2>Welcome, please authenticate Twitter and Github:</h2>
-        <Authlink
-          success={authStatus.github}
-          service={'github'}
-          onWindowClosed={onGithubAuthenticated}
-        />
-        <Authlink
-          success={authStatus.twitter}
-          service={'twitter'}
-          onWindowClosed={onTwitterAuthenticated}
-        />
-        {authStatus.github &&
-          !authStatus.hasRepo &&
-          !isRepoLoading && (
-            <p>
-              It looks like you haven't forked the 100-days-of-code repository.
-              Please do it{' '}
-              <a
-                href="https://github.com/Kallaway/100-days-of-code"
-                target="_blank"
-              >
-                here
-              </a>{' '}
-              and refresh this page.
-            </p>
-          )}
-      </div>
-    )
-
-  return <div className={css.authContainer}>{content}</div>
+    return children
+  }
+  const unauthenticated = ['twitter', 'github'].find(
+    service => authStatus[service] === false
+  )
+  return (
+    <div className={css.authOverlay}>
+      {unauthenticated && (
+        <div>
+          <h2>Welcome, please authenticate {capitalize(unauthenticated)}:</h2>
+          <a
+            href={`/auth/${unauthenticated}`}
+            className={`${css.authLink} ${css.linkGithub}`}
+          >
+            <img
+              src={require(`../assets/${unauthenticated}.png`)}
+              alt={unauthenticated}
+            />
+            Connect with {capitalize(unauthenticated)}
+          </a>
+        </div>
+      )}
+      {authStatus.github &&
+        !authStatus.hasRepo &&
+        !isRepoLoading && (
+          <p>
+            It looks like you haven't forked the 100-days-of-code repository.
+            Please do it{' '}
+            <a
+              href="https://github.com/Kallaway/100-days-of-code"
+              target="_blank"
+            >
+              here
+            </a>{' '}
+            and refresh this page.
+          </p>
+        )}
+    </div>
+  )
 }
 
 const stateToProps = ({ authStatus, isRepoLoading }) => {
@@ -56,11 +54,4 @@ const stateToProps = ({ authStatus, isRepoLoading }) => {
   }
 }
 
-const dispatchToProps = dispatch => {
-  return {
-    onGithubAuthenticated: success => dispatch(updateGithubStatus(success)),
-    onTwitterAuthenticated: success => dispatch(updateTwitterStatus(success))
-  }
-}
-
-export default connect(stateToProps, dispatchToProps)(CheckAuth)
+export default connect(stateToProps, undefined)(CheckAuth)

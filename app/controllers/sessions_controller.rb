@@ -11,7 +11,12 @@ class SessionsController < ActionController::Base
     current_user.update_attributes("#{column}": uid, "#{provider}_token": request.env['omniauth.auth'].credentials.token)
     current_user.update_attribute(:twitter_token_secret, request.env['omniauth.auth'].credentials.secret) if provider === 'twitter'
     session[:user] = current_user.id
-    authenticated = true
-    render html: "<script>window.opener.authSuccess = #{authenticated}; window.close()</script>".html_safe
+
+    redirect_to root_url
+  end
+
+  def destroy
+    session[:user] = nil
+    redirect_to login_url
   end
 end

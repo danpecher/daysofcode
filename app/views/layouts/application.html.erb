@@ -15,7 +15,7 @@
         authStatus: {
           twitter: <%= (current_user && current_user.twitter_uid.present?) || false %>,
           github: <%= (current_user && current_user.github_uid.present?) || false %>,
-          hasRepo: <%= (current_user && current_user.has_repo) || false %>,
+          hasRepo: <%= (current_user&.has_repo) || false %>,
         }
       }
     </script>
