@@ -10,7 +10,9 @@ import {
 const initialState = {
   authStatus: window.INIT.authStatus,
   entries: [],
-  isRepoLoading: false
+  isRepoLoading: false,
+  hasPostedToday: window.INIT.hasPostedToday,
+  currentDay: window.INIT.currentDay
 }
 
 export default (state = initialState, action) => {
@@ -23,7 +25,8 @@ export default (state = initialState, action) => {
     case PREPEND_ENTRY:
       return {
         ...state,
-        entries: [action.entry, ...state.entries]
+        entries: [action.entry, ...state.entries],
+        hasPostedToday: true
       }
     case UPDATE_GITHUB_AUTH_STATUS:
       return {

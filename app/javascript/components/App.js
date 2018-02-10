@@ -7,18 +7,20 @@ import { postEntry } from '../store/actions'
 import Entry from './Entry.js'
 import CheckAuth from './CheckAuth'
 
-const App = ({ entries, onEntryPosted }) => {
+const App = ({ entries, onEntryPosted, hasPostedToday, currentDay }) => {
   return (
     <div className={styles.container}>
       <h1>100 days of code</h1>
       <CheckAuth>
-        <DayInput onEntryPosted={onEntryPosted} />
+        {!hasPostedToday && <DayInput currentDay={currentDay} onEntryPosted={onEntryPosted} />}
         <div className={styles.entries}>
           {entries.map(entry => (
             <Entry
               key={entry.id}
               date={entry.created_at}
               text={entry.content}
+              round={entry.round}
+              day={entry.day}
             />
           ))}
         </div>
@@ -27,9 +29,11 @@ const App = ({ entries, onEntryPosted }) => {
   )
 }
 
-const stateToProps = ({ entries }) => {
+const stateToProps = ({ entries, hasPostedToday, currentDay }) => {
   return {
-    entries
+    entries,
+    hasPostedToday,
+    currentDay
   }
 }
 

@@ -3,6 +3,19 @@ import styles from './DayInput.css'
 import PropTypes from 'prop-types'
 
 class DayInput extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      chars: 0,
+      maxChars: 280 - props.currentDay.toString().length - 18
+    }
+  }
+  updateCharCount(content) {
+    this.setState({
+      chars: content.length
+    })
+  }
   render() {
     return (
       <div className={styles.container}>
@@ -12,7 +25,9 @@ class DayInput extends Component {
           ref={'text'}
           className={styles.input}
           placeholder={'Today I ... '}
+          onChange={e => this.updateCharCount(e.target.value)}
         />
+        <span style={{color: this.state.chars >= this.state.maxChars ? 'red' : ''}}>{this.state.chars}</span>/{this.state.maxChars}
         <br />
 
         <div className={styles.submit}>
@@ -30,6 +45,9 @@ class DayInput extends Component {
           <button
             className={'post-button'}
             onClick={() => {
+              if (this.state.chars >= this.state.maxChars) {
+                return
+              }
               this.props.onEntryPosted(this.refs.text.value)
               this.refs.text.value = ''
             }}
@@ -43,7 +61,8 @@ class DayInput extends Component {
 }
 
 DayInput.propTypes = {
-  onEntryPosted: PropTypes.func.isRequired
+  onEntryPosted: PropTypes.func.isRequired,
+  currentDay: PropTypes.number.isRequired
 }
 
 export default DayInput

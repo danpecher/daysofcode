@@ -17,7 +17,7 @@ const CheckAuth = ({ authStatus, children, isRepoLoading }) => {
         <div>
           <h2>Welcome, please authenticate {capitalize(unauthenticated)}:</h2>
           <a
-            href={`/auth/${unauthenticated}`}
+            href={`/auth/${unauthenticated}${unauthenticated === 'twitter' ? '?x_auth_access_type=write' : ''}`}
             className={`${css.authLink} ${css.linkGithub}`}
           >
             <img

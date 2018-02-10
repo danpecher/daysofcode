@@ -10,6 +10,7 @@ class SessionsController < ActionController::Base
     end
     current_user.update_attributes("#{column}": uid, "#{provider}_token": request.env['omniauth.auth'].credentials.token)
     current_user.update_attribute(:twitter_token_secret, request.env['omniauth.auth'].credentials.secret) if provider === 'twitter'
+    current_user.update_attribute(:github_username, request.env['omniauth.auth'].info.nickname) if provider === 'github'
     session[:user] = current_user.id
 
     redirect_to root_url

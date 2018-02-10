@@ -12,6 +12,8 @@
 
     <script>
       window.INIT = {
+        hasPostedToday: <%= current_user.has_posted_today %>,
+        currentDay: <%= current_user.current_day %>,
         authStatus: {
           twitter: <%= (current_user && current_user.twitter_uid.present?) || false %>,
           github: <%= (current_user && current_user.github_uid.present?) || false %>,
