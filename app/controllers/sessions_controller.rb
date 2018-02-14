@@ -4,7 +4,11 @@ class SessionsController < ActionController::Base
     provider = request.env['omniauth.auth'].provider
     column = "#{provider}_uid"
     current_user = begin
-      session.has_key?(:user) ? User.find(session[:user]) : User.create
+      if session.has_key?(:user)
+        User.find(session[:user])
+      else
+        User.find_by("#{column}": uid)
+      end
     rescue ActiveRecord::RecordNotFound
       User.create
     end
