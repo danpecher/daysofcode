@@ -25,7 +25,7 @@ class Post < ApplicationRecord
     filename = "r#{round}-log.md"
     file = github.contents(repo, path: filename)
     current_day = "R#{round}D#{day}"
-    github.update_contents(repo, filename, current_day, file.sha, Base64.decode64(file.content) + "\n\n### #{current_day}\n#{post.content}")
+    github.update_contents(repo, filename, current_day, file.sha, Base64.decode64(file.content).force_encoding('UTF-8') + "\n\n### #{current_day}\n#{params[:content]}")
 
     post
   end
