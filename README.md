@@ -1,24 +1,19 @@
-# README
+### TODO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+MVP:
+- [x] Github/Twitter auth
+- [x] daily posting to Github + Twitter
+- [x] missed days
+- [ ] handle timezones correctly
+- [ ] logout
 
-Things you may want to cover:
+More functionality:
+- [ ] public timeline
+- [ ] support for projects
+- [ ] day's commits with links
+- [ ] adding screenshots to posts
+- [ ] allow posting until 3am of the next day
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Extra:
+- [ ] import of existing data from twitter
+- [ ] better design
