@@ -6,7 +6,7 @@ MVP:
 - [x] missed days
 - [ ] handle timezones correctly
 - [ ] logout
-- [ ] fix character counting according to https://developer.twitter.com/en/docs/basics/tco.html
+- [x] fix character counting according to https://developer.twitter.com/en/docs/basics/tco.html
 
 More functionality:
 - [ ] public timeline

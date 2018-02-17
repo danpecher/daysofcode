@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import styles from './DayInput.css'
 import PropTypes from 'prop-types'
 
+// TODO: fetch from twitter api daily
+const MAX_TWITTER_URL_LEN = 24
+
 class DayInput extends Component {
   constructor(props) {
     super(props)
@@ -12,8 +15,12 @@ class DayInput extends Component {
     }
   }
   updateCharCount(content) {
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+    const urlCount = content.match(regex).length
+    const chars = content.replace(regex, '').length + urlCount * MAX_TWITTER_URL_LEN
+
     this.setState({
-      chars: content.length
+      chars
     })
   }
   render() {
