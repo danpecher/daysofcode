@@ -13,8 +13,8 @@ class Post < ApplicationRecord
 
     twitter_msg = "R#{round}D#{day} #{post.content} #100DaysOfCode"
     twitter = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV['twitter_key']
-      config.consumer_secret     = ENV['twitter_secret']
+      config.consumer_key        = ENV['TWITTER_KEY']
+      config.consumer_secret     = ENV['TWITTER_SECRET']
       config.access_token        = user.twitter_token
       config.access_token_secret = user.twitter_token_secret
     end
