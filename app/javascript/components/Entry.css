@@ -29,6 +29,25 @@
     margin-left: -6.5px;
 }
 
+.cross {
+    width: 15px;
+    height: 15px;
+    color: red;
+    margin-right: 8px;
+    margin-left: -6.5px;
+}
+
+.cross::before {
+    content: "\00d7";
+    font-size: 25px;
+    line-height: 14px;
+}
+
+.missed {
+    color: red;
+    font-weight: bold;
+}
+
 .dateWrap {
     display: flex;
     align-items: center;

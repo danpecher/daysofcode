@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './Entry.css'
+import moment from 'moment'
 
 const Entry = ({ date, text, day, round }) => {
-  const dateObj = new Date(date)
   return (
     <div className={styles.entry}>
       <div className={styles.dateWrap}>
         <div className={styles.bullet} />
-        <strong>R{round}D{day}</strong>&emsp;
-        <small>{dateObj.getMonth()}/{dateObj.getDay()}/{dateObj.getFullYear()} {dateObj.getHours()}:{dateObj.getMinutes()}</small>
+        <strong>
+          R{round}D{day}
+        </strong>&emsp;
+        <small>{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</small>
       </div>
       <div className={styles.bordered}>
         <div className={styles.text}>{text}</div>
@@ -32,7 +34,7 @@ Entry.propTypes = {
   date: PropTypes.string,
   text: PropTypes.string,
   day: PropTypes.number,
-  round: PropTypes.number,
+  round: PropTypes.number
 }
 
 export default Entry

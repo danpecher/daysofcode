@@ -19,15 +19,22 @@ class DayInput extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <h4>Today's post:</h4>
-
+        <h4 className={styles.title}>Today's post:</h4>
         <textarea
           ref={'text'}
           className={styles.input}
           placeholder={'Today I ... '}
           onChange={e => this.updateCharCount(e.target.value)}
         />
-        <span style={{color: this.state.chars >= this.state.maxChars ? 'red' : ''}}>{this.state.chars}</span>/{this.state.maxChars}
+        <div className={styles.charCount}>
+          <span
+            style={{
+              color: this.state.chars >= this.state.maxChars ? 'red' : ''
+            }}
+          >
+            {this.state.chars}
+          </span>/{this.state.maxChars}
+        </div>
         <br />
 
         <div className={styles.submit}>
