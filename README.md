@@ -5,7 +5,7 @@ MVP:
 - [x] daily posting to Github + Twitter
 - [x] missed days
 - [ ] handle timezones correctly
-- [ ] logout
+- [x] logout
 - [x] fix character counting according to https://developer.twitter.com/en/docs/basics/tco.html
 
 More functionality:

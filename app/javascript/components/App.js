@@ -12,6 +12,7 @@ const App = ({ entries, onEntryPosted, hasPostedToday, currentDay }) => {
   return (
     <div className={styles.container}>
       <h1>100 days of code</h1>
+      <a href="/logout" className={styles.logoutLink}>Logout</a>
       <CheckAuth>
         {!hasPostedToday && (
           <DayInput currentDay={currentDay} onEntryPosted={onEntryPosted} />
