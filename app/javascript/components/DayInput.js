@@ -16,7 +16,8 @@ class DayInput extends Component {
   }
   updateCharCount(content) {
     const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-    const urlCount = content.match(regex).length
+    const match = content.match(regex)
+    const urlCount = match ? match.length : 0
     const chars = content.replace(regex, '').length + urlCount * MAX_TWITTER_URL_LEN
 
     this.setState({
@@ -36,7 +37,7 @@ class DayInput extends Component {
         <div className={styles.charCount}>
           <span
             style={{
-              color: this.state.chars >= this.state.maxChars ? 'red' : ''
+              color: this.state.chars > this.state.maxChars ? 'red' : ''
             }}
           >
             {this.state.chars}
@@ -59,7 +60,7 @@ class DayInput extends Component {
           <button
             className={'post-button'}
             onClick={() => {
-              if (this.state.chars >= this.state.maxChars) {
+              if (this.state.chars > this.state.maxChars) {
                 return
               }
               this.props.onEntryPosted(this.refs.text.value)
